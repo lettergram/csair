@@ -1,0 +1,126 @@
+Manual Test Plan
+
+1. Run graph_test.go - which tests all of the graph functions
+
+// Multiple json
+2. Run CSAir.go
+    a. overide default
+    b. Type route_map.json
+    c. Then open an additional file champaign.json
+    d. Click 'n' and enter options menu
+    e. Type 'a' then "CMI" - Champaign's info should show up
+    f. Type 'a' then "MEX" - Mexico Cities info should show up
+    g. Type 'g' then 'e' to save map
+    h. Type 'z' and exit
+
+
+// Adding/deleting/editing a city and route
+3. Run CSAir.go
+    a. Click Enter
+    b. Click 'n' and enter options menu
+    c. Type 'a' then "CMI" - Champaign's info should show up
+    d. Type 'a' then "MEX" - Mexico Cities info should show up
+    e. Type 'g' then 'a' and add the following:
+        Please enter the city code: TES
+        Please enter the city name: TEST
+        Please enter the cities country: TEST
+        Please enter the cities continent: TEST
+        Please enter the cities timezone: 2
+        Please enter the cities population: 100
+        Please enter the cities region: 1
+        Add edges to the given City:
+        Please enter the code of a connected city (or zzzz to exit): MEX
+        Please enter the distance to connected city: 100
+        Please enter the code of a connected city (or zzzz to exit): NYC
+        Please enter the distance to connected city: 100000
+        Please enter the code of a connected city (or zzzz to exit): zzzz
+     f. Type 'e' and you should see the following:
+         Longest Flight: TES to NYC at 100000
+         Shortest Flight: TES to MEX at 100
+         Average Flight: 3095
+         Largest City: Tokyo with a population of 34000000
+         Smallest City: TEST with a population of 100
+         Average Population: 11328820
+         Continents Currently Serviced: South America, North America, Africa, Europe, Asia, Australia, TEST,
+     g. Now type 'g' then 'd' and enter TES as the source and MEX as the dest.
+     h. Type 'a' and you should now see:
+        Name: TEST
+        Code: TES
+        Country: TEST
+        Timezone: 2.0
+        Coordinates:
+        Population:  100
+        Region: 1
+        Possible Flights: New York|100000,
+     i. Type 'g' then 'c' and enter TES, and then try to type 'a' - TES, you should see:
+        Error, city does not exist
+
+// Flight Plans
+4. Run CSAir.go
+    a. Type 'h' and MEX to SYD
+    b. You should see:
+        Path: MEX   LAX   SYD
+        Total Distance: 14550
+        Flight Time: 19 hours, 32 minutes, 55 seconds
+        This Flight Costs: 749.70
+    c. Then type SYD to MEX:
+        Path: SYD   LAX   MEX
+        Total Distance: 14550
+        Flight Time: 19 hours, 32 minutes, 55 seconds
+        This Flight Costs: 3615.30
+    d. Again NYC to SYD:
+        Path: NYC   CMI   LAX   SYD
+        Total Distance: 14516
+        Flight Time: 19 hours, 29 minutes, 39 seconds
+        This Flight Costs: 188.75
+    e. SYD to NYC:
+        Path: SYD   LAX   CMI   NYC
+        Total Distance: 14516
+        Flight Time: 19 hours, 29 minutes, 39 seconds
+        This Flight Costs: 3012.75
+    f. Finally MEX to NYC:
+        Path: MEX   CMI   NYC
+        Total Distance: 2312
+        Flight Time: 2 hours, 33 minutes, 52 seconds
+        This Flight Costs: 467.10
+    g. NYC to MEX:
+        Path: NYC   CMI   MEX
+        Total Distance: 2312
+        Flight Time: 2 hours, 33 minutes, 52 seconds
+        This Flight Costs: 226.50
+
+
+// Edit an existing city
+5. Run CSAir.go
+    a. Type 'a' + MEX:
+        Name: Mexico City
+        Code: MEX
+        Country: MX
+        Timezone: -6.0
+        Coordinates: N: 19 W: 99
+        Population:  23400000
+        Region: 1
+        Possible Flights: Lima|4231, Los Angeles|2499, Chicago|2714, Miami|2053, Bogota|3158, Champaign|1557,
+     b. Type 'g' then 'b' + MEX and then 'g' + 100
+     c. Now try typing 'a' and you should see:
+        Please enter the city code: MEX
+        Error, city does not exist
+     d. Now type 'a' and MEX:
+           Name: Mexico City
+           Code: MEX
+           Country: MX
+           Timezone: -6.0
+           Coordinates: N: 19 W: 99
+           Population:  100
+           Region: 1
+           Possible Flights: Lima|4231, Los Angeles|2499, Chicago|2714, Miami|2053, Bogota|3158, Champaign|1557,
+     e. Type 'g' then 'b' + MEX and 'b' + AUSTIN
+     f. Type 'a' and you should see:
+        Name: AUSTIN
+        Code: MEX
+        Country: MX
+        Timezone: -6.0
+        Coordinates: N: 19 W: 99
+        Population:  100
+        Region: 1
+        Possible Flights: Lima|4231, Los Angeles|2499, Chicago|2714, Miami|2053, Bogota|3158, Champaign|1557, 
